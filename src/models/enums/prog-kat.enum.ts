@@ -1,0 +1,9 @@
+export enum ProgKatEnum {
+  PRILEZITOSTNE = 1,
+  ODBORKY = 2,
+  VYZVY = 3,
+  VPM = 4,
+  OCENENIA = 5,
+  STUPNE_NAPREDOVANIA = 6,
+  VODNOSKAUTSKE = 7,
+}
