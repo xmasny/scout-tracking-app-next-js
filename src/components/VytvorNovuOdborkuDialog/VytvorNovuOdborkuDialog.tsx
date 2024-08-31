@@ -21,25 +21,25 @@ type Categories = {
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
 	expertskeOdborky: [
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
 	programKat: [
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
 	stupen: [
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
 };
 
@@ -53,19 +53,17 @@ const VytvorNovuOdborkuDialog: React.FC<Props> = ({ handleClose, open }) => {
 	const [odborkaData, setOdborkaData] = useState<NewOdborka>({
 		addNewOdborka: {
 			program_kat: ODBORKY,
-			vekova_kat: "",
-			name: "",
-			photo: "",
-			stupen: "",
-			expertske_odborky: "",
+			vekova_kat: '',
+			name: '',
+			photo: '',
+			stupen: '',
+			expertske_odborky: '',
 			id: 0,
 		},
 	});
 
-	const [
-		addNewOdborkaMutation,
-		{ data: mutationData, loading: mutationLoading },
-	] = useMutation<NewOdborka>(AddNewOdborkaMutation);
+	const [addNewOdborkaMutation, { data: mutationData, loading: mutationLoading }] =
+		useMutation<NewOdborka>(AddNewOdborkaMutation);
 
 	if (loading) return null;
 
@@ -127,7 +125,8 @@ const VytvorNovuOdborkuDialog: React.FC<Props> = ({ handleClose, open }) => {
 										vekova_kat: e.target.value,
 									},
 								});
-							}}>
+							}}
+						>
 							{vekovaKatMapped}
 						</StyledSelect>
 						<StyledSelect
@@ -144,7 +143,8 @@ const VytvorNovuOdborkuDialog: React.FC<Props> = ({ handleClose, open }) => {
 										stupen: e.target.value,
 									},
 								});
-							}}>
+							}}
+						>
 							<MenuItem value={0}>Nie je</MenuItem>
 							{stupenMapped}
 						</StyledSelect>
@@ -162,7 +162,8 @@ const VytvorNovuOdborkuDialog: React.FC<Props> = ({ handleClose, open }) => {
 										expertske_odborky: e.target.value,
 									},
 								});
-							}}>
+							}}
+						>
 							<MenuItem value={0}>Nie je</MenuItem>
 							{expertskeOdborkyMapped}
 						</TextField>
@@ -199,7 +200,8 @@ const VytvorNovuOdborkuDialog: React.FC<Props> = ({ handleClose, open }) => {
 							handleOpenUlohy();
 						}}
 						variant="contained"
-						color="primary">
+						color="primary"
+					>
 						Ďalej
 					</Button>
 					<Button variant="contained" color="inherit" onClick={handleClose}>
@@ -207,16 +209,9 @@ const VytvorNovuOdborkuDialog: React.FC<Props> = ({ handleClose, open }) => {
 					</Button>
 				</DialogActions>
 			</Dialog>
-			{mutationData && (
-				<VlozitUlohyDialog
-					data={mutationData}
-					open={openUlohy}
-					handleClose={handleCloseUlohy}
-				/>
-			)}
+			{mutationData && <VlozitUlohyDialog data={mutationData} open={openUlohy} handleClose={handleCloseUlohy} />}
 		</Box>
 	);
 };
 
 export default VytvorNovuOdborkuDialog;
-

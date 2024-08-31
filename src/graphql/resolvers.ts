@@ -1,5 +1,5 @@
 const resolvers = {
-  Query: {
-    hello: () => 'world',
-  },
+	Query: {
+		hello: () => 'world',
+	},
 };

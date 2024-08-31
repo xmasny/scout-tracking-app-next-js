@@ -3,8 +3,17 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AddCircle, Delete } from '@mui/icons-material';
 import {
-	Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputAdornment,
-	OutlinedInput, Tooltip
+	Box,
+	Button,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogTitle,
+	FormControl,
+	IconButton,
+	InputAdornment,
+	OutlinedInput,
+	Tooltip,
 } from '@mui/material';
 
 import { AddNewUlohyOdborkaMutation } from '../../../queries.graphql';
@@ -21,12 +30,10 @@ const VlozitUlohyDialog: React.FC<Props> = ({ handleClose, open, data }) => {
 	const { id, name, photo } = data.addNewOdborka;
 	const [cisloUlohy, setCisloUlohy] = useState<number>(2);
 	const [form, setForm] = useState<Ulohy[]>([
-		{ program_id: id, cislo_ulohy: 1, text_ulohy: "", potrebny_pocet_poduloh: 0, podulohy: []},
+		{ program_id: id, cislo_ulohy: 1, text_ulohy: '', potrebny_pocet_poduloh: 0, podulohy: [] },
 	]);
 
-	const [addNewOdborkaUlohyMutation] = useMutation<NewOdborka>(
-		AddNewUlohyOdborkaMutation
-	);
+	const [addNewOdborkaUlohyMutation] = useMutation<NewOdborka>(AddNewUlohyOdborkaMutation);
 
 	console.log(form);
 
@@ -35,7 +42,7 @@ const VlozitUlohyDialog: React.FC<Props> = ({ handleClose, open, data }) => {
 
 		setForm([
 			...form,
-			{ program_id: id, cislo_ulohy: cisloUlohy, text_ulohy: "", potrebny_pocet_poduloh: 0, podulohy: []},
+			{ program_id: id, cislo_ulohy: cisloUlohy, text_ulohy: '', potrebny_pocet_poduloh: 0, podulohy: [] },
 		]);
 	};
 
@@ -53,12 +60,10 @@ const VlozitUlohyDialog: React.FC<Props> = ({ handleClose, open, data }) => {
 					<OutlinedInput
 						value={formData.text_ulohy}
 						multiline
-						startAdornment={
-							<InputAdornment position="start">{`${formData.cislo_ulohy}.`}</InputAdornment>
-						}
+						startAdornment={<InputAdornment position="start">{`${formData.cislo_ulohy}.`}</InputAdornment>}
 						onChange={(e) => {
 							const data = [...form];
-							data[index]["text_ulohy"] = e.target.value;
+							data[index]['text_ulohy'] = e.target.value;
 							setForm(data);
 						}}
 					/>
@@ -99,7 +104,8 @@ const VlozitUlohyDialog: React.FC<Props> = ({ handleClose, open, data }) => {
 									ulohy: form,
 								},
 							});
-						}}>
+						}}
+					>
 						Vložiť odborku do databazy
 					</Button>
 					<Button variant="contained" color="inherit" onClick={handleClose}>
@@ -112,4 +118,3 @@ const VlozitUlohyDialog: React.FC<Props> = ({ handleClose, open, data }) => {
 };
 
 export default VlozitUlohyDialog;
-

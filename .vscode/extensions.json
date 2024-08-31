@@ -1,6 +1,3 @@
 {
-  "recommendations": [
-    "miclo.sort-typescript-imports",
-    "eliostruyf.vscode-typescript-exportallmodules"
-  ]
+	"recommendations": ["miclo.sort-typescript-imports"]
 }

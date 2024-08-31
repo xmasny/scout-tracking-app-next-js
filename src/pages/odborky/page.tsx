@@ -1,7 +1,7 @@
 'use client';
 
-import Odborky from '@/components/Odborky/Odborky';
+import { Odborky } from '@/components';
 
 export default function Page(): React.ReactElement {
-  return <Odborky />;
+	return <Odborky />;
 }
