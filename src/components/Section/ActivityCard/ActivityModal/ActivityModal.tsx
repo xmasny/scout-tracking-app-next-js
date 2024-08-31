@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
-import { Program } from "../../../../models/entities";
-import ProgramInfo from "./ProgramInfo/ProgramInfo";
+import { Program } from '../../../../models/entities';
+import ProgramInfo from './ProgramInfo/ProgramInfo';
 
 type Props = {
   open: boolean;

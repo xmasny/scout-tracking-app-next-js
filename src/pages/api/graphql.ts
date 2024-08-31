@@ -1,7 +1,7 @@
-import { gql } from "graphql-tag";
+import { gql } from 'graphql-tag';
 
-import { ApolloServer, BaseContext } from "@apollo/server";
-import { startServerAndCreateNextHandler } from "@as-integrations/next";
+import { ApolloServer, BaseContext } from '@apollo/server';
+import { startServerAndCreateNextHandler } from '@as-integrations/next';
 
 const resolvers: BaseContext = {
   Query: {

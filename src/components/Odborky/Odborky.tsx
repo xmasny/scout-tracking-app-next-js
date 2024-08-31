@@ -1,26 +1,20 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ScrollToTop from 'react-scroll-up';
 import { remove } from 'remove-accents';
 
 import { useQuery } from '@apollo/client';
-import { AddRounded, KeyboardArrowUpRounded, Search } from '@mui/icons-material';
-import { Box, CircularProgress, Container, Fab, IconButton, Paper, TextField, Tooltip, Zoom } from '@mui/material';
+import { AddRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
+import { Box, CircularProgress, Fab, IconButton, TextField, Tooltip } from '@mui/material';
 
 import Section from '../../components/Section/Section';
 import VytvorNovuOdborkuDialog from '../../components/VytvorNovuOdborkuDialog/VytvorNovuOdborkuDialog';
 import { VekKat } from '../../models/entities';
-import { GetProgramOdborkyQuery, GetVekKatOdborkyQuery } from '../../queries.graphql';
+import { GetVekKatOdborkyQuery } from '../../queries.graphql';
 import {
-  BoxSpinner,
-  FloatingButton,
-  FloatingButtonLast,
-  OdborkyBox,
-  OdborkyContainer,
-  OdporkyFab,
-  OdporkyPaper,
-  OdporkySearch,
+	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdporkyFab, OdporkyPaper,
+	OdporkySearch
 } from './odborky.styles';
 
 const Odborky: React.FC = () => {

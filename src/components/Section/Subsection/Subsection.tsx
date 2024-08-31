@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material';
+import { Accordion, AccordionSummary, Typography } from '@mui/material';
 
 import ActivityCard from '../ActivityCard/ActivityCard';
 import { StyledBox, StyledSubsection } from './Subsection.styles';

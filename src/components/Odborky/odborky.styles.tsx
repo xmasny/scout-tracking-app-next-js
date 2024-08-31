@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { Search } from "@mui/icons-material";
-import { Box, Container, Fab, Paper } from "@mui/material";
+import styled from '@emotion/styled';
+import { Search } from '@mui/icons-material';
+import { Box, Container, Paper } from '@mui/material';
 
 export const OdborkyContainer = styled(Container)`
   justify-items: center;

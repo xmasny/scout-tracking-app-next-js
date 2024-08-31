@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Box } from '@mui/material';
 
-import css from './ProgramInfo.module.css';
 import ProgramInfoCategory from './ProgramInfoCategory/ProgramInfoCategory';
 
 type Props = {

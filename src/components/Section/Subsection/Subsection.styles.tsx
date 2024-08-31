@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { AccordionDetails, Box } from "@mui/material";
+import styled from '@emotion/styled';
+import { AccordionDetails, Box } from '@mui/material';
 
 export const StyledBox = styled(Box)`
   margin-top: 1rem;
