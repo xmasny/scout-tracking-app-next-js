@@ -5,9 +5,10 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 
-import NavBar from '@/components/NavBar/NavBar';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { QueryClient } from '@tanstack/react-query';
+
+import NavBar from '@/components/NavBar/NavBar';
 
 const inter = Inter({ subsets: ['latin'] });
 

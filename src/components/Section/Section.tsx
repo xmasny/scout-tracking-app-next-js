@@ -1,7 +1,8 @@
 'use client';
 
-import { collect } from 'collect.js';
 import React, { useEffect, useState } from 'react';
+
+import { collect } from 'collect.js';
 import { remove } from 'remove-accents';
 
 import { useQuery } from '@apollo/client';

@@ -1,7 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useState } from 'react';
+
+import Link from 'next/link';
 
 import { AppBar, Box, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 

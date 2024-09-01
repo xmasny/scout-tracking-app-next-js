@@ -2,25 +2,21 @@
 
 import React, { useState } from 'react';
 import ScrollToTop from 'react-scroll-up';
+
 import { remove } from 'remove-accents';
 
 import { useQuery } from '@apollo/client';
 import { AddRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import { Box, CircularProgress, Fab, IconButton, TextField, Tooltip } from '@mui/material';
 
-import { Section, VytvorNovuOdborkuDialog } from '@/components';
+import { Section } from '@/components/Section';
 import { VekKat } from '@/models';
 import { GetVekKatOdborkyQuery } from '@/queries.graphql';
 
+import { VytvorNovuOdborkuDialog } from '../VytvorNovuOdborkuDialog';
 import {
-	BoxSpinner,
-	FloatingButton,
-	FloatingButtonLast,
-	OdborkyBox,
-	OdborkyContainer,
-	OdborkyFab,
-	OdborkyPaper,
-	OdborkySearch,
+	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdborkyFab, OdborkyPaper,
+	OdborkySearch
 } from './odborky.styles';
 
 const Odborky: React.FC = () => {
