@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Toolbar } from "@mui/material";
+import styled from '@emotion/styled';
+import { Toolbar } from '@mui/material';
 
 export const StickNavBar = styled.div`
 position: -webkit-sticky;

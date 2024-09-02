@@ -1,7 +1,8 @@
-import { gql } from "graphql-tag";
+import { gql } from 'graphql-tag';
+import { NextRequest } from 'next/server';
 
-import { ApolloServer, BaseContext } from "@apollo/server";
-import { startServerAndCreateNextHandler } from "@as-integrations/next";
+import { ApolloServer, BaseContext } from '@apollo/server';
+import { startServerAndCreateNextHandler } from '@as-integrations/next';
 
 const resolvers: BaseContext = {
   Query: {
@@ -74,4 +75,8 @@ const server = new ApolloServer({
   typeDefs,
 });
 
-export default startServerAndCreateNextHandler(server);
+const handler = startServerAndCreateNextHandler<NextRequest>(server, {
+  context: async req => ({ req }),
+});
+
+export { handler as GET, handler as POST };

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { useMutation } from "@apollo/client";
-import { AddCircle, Delete } from "@mui/icons-material";
+import { useMutation } from '@apollo/client';
+import { AddCircle, Delete } from '@mui/icons-material';
 import {
-    Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton,
-    InputAdornment, OutlinedInput, Tooltip
-} from "@mui/material";
+	Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputAdornment,
+	OutlinedInput, Tooltip
+} from '@mui/material';
 
-import { AddNewUlohyOdborkaMutation } from "../../../queries.graphql";
-import { NewOdborka, Ulohy } from "../../../types/types";
-import { FormMarginBox, IconButtonsBox } from "./VlozitUlohyDialog.styles";
+import { AddNewUlohyOdborkaMutation } from '../../../queries.graphql';
+import { NewOdborka, Ulohy } from '../../../types/types';
+import { FormMarginBox, IconButtonsBox } from './VlozitUlohyDialog.styles';
 
 type Props = {
 	open: boolean;

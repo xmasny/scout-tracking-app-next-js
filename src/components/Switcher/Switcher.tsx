@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Odborky from "../../containers/Odborky/Odborky";
+import Odborky from '../../containers/Odborky/Odborky';
 
 const Switcher: React.FC = (props) => {
 	return (

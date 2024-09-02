@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { useMutation, useQuery } from "@apollo/client";
-import {
-    Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField
-} from "@mui/material";
+import { useMutation, useQuery } from '@apollo/client';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, TextField } from '@mui/material';
 
-import { ProgKatEnum } from "../../models/enums/prog-kat.enum";
-import { AddNewOdborkaMutation, GetAllCategoriesQuery } from "../../queries.graphql";
-import { NewOdborka } from "../../types/types";
-import VlozitUlohyDialog from "./VlozitUlohyDialog/VlozitUlohyDialog";
-import { StyledBox, StyledSelect, StyledTextField } from "./VytvorNovuOdborkuDialog.styles";
+import { ProgKatEnum } from '../../models/enums/prog-kat.enum';
+import { AddNewOdborkaMutation, GetAllCategoriesQuery } from '../../queries.graphql';
+import { NewOdborka } from '../../types/types';
+import VlozitUlohyDialog from './VlozitUlohyDialog/VlozitUlohyDialog';
+import { StyledBox, StyledSelect, StyledTextField } from './VytvorNovuOdborkuDialog.styles';
 
 const { ODBORKY } = ProgKatEnum;
 

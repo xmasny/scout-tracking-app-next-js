@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { AccordionSummary } from "@mui/material";
+import styled from '@emotion/styled';
+import { AccordionSummary } from '@mui/material';
 
 export const StyledLi = styled.li`
   margin-bottom: 10px;

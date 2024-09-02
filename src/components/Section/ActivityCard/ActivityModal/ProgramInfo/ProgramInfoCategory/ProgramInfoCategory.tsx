@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { Accordion, AccordionDetails } from '@mui/material';
 
-import { StyledLi, StyledTitle } from "./ProgramInfoCategory.styles";
+import { StyledLi, StyledTitle } from './ProgramInfoCategory.styles';
 
 type Props = {
   title: string;

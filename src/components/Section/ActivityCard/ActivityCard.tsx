@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 
-import ActivityModal from "./ActivityModal/ActivityModal";
+import ActivityModal from './ActivityModal/ActivityModal';
 
 type Props = {
   program: any;

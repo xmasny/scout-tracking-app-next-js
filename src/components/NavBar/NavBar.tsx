@@ -1,11 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 import { AppBar, Box, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
 
 import { Navbar, StickNavBar } from './NavBar.style';
-import Link from 'next/link';
 
 const NavBar: React.FC = () => {
   const [alignment, setAlignment] = useState('odborky');
