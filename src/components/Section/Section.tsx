@@ -1,12 +1,18 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-
 import { collect } from 'collect.js';
+import React, { useEffect, useState } from 'react';
 import { remove } from 'remove-accents';
 
 import { useQuery } from '@apollo/client';
 import { Accordion, AccordionDetails, AccordionSummary, Box, CircularProgress, Typography } from '@mui/material';
+
+import { ExpertskeOdborky, Program } from '../../models/entities';
+import { ProgKatEnum } from '../../models/enums/prog-kat.enum';
+import { VekKatEnum } from '../../models/enums/vek-kat.enum';
+import { GetExpertskeOdborkyQuery, GetProgramOdborkyQuery } from '../../queries.graphql';
+import ActivityCard from './ActivityCard/ActivityCard';
+import Subsection from './Subsection/Subsection';
 
 import { ActivityCard, Subsection } from '@/components';
 import { ExpertskeOdborky, Program } from '@/models';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 
-import { ActivityModal } from '@/components';
+import ActivityModal from './ActivityModal/ActivityModal';
 
 type Props = {
 	program: any;

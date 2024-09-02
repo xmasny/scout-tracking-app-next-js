@@ -9,14 +9,13 @@ import { useQuery } from '@apollo/client';
 import { AddRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import { Box, CircularProgress, Fab, IconButton, TextField, Tooltip } from '@mui/material';
 
-import { Section } from '@/components/Section';
-import { VekKat } from '@/models';
-import { GetVekKatOdborkyQuery } from '@/queries.graphql';
-
-import { VytvorNovuOdborkuDialog } from '../VytvorNovuOdborkuDialog';
+import Section from '../../components/Section/Section';
+import VytvorNovuOdborkuDialog from '../../components/VytvorNovuOdborkuDialog/VytvorNovuOdborkuDialog';
+import { VekKat } from '../../models/entities';
+import { GetVekKatOdborkyQuery } from '../../queries.graphql';
 import {
-	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdborkyFab, OdborkyPaper,
-	OdborkySearch
+	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdporkyFab, OdporkyPaper,
+	OdporkySearch
 } from './odborky.styles';
 
 const Odborky: React.FC = () => {
