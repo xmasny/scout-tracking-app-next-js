@@ -1,13 +1,13 @@
 'use client';
 
-import './globals.css';
+import "./globals.css";
 
-import { Inter } from 'next/font/google';
+import { Inter } from "next/font/google";
+import Head from "next/head";
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { QueryClient } from '@tanstack/react-query';
-
-import NavBar from '@/components/NavBar/NavBar';
+import NavBar from "@/components/NavBar/NavBar";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { QueryClient } from "@tanstack/react-query";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,10 +25,10 @@ const queryClient = new QueryClient();
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <head>
+      <Head>
         <title>React App</title>
         <meta name="description" content="Web site created..." />
-      </head>
+      </Head>
       <NavBar />
       <body className={inter.className}>
         <ApolloProvider client={client}>{children} </ApolloProvider>

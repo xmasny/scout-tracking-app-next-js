@@ -2,15 +2,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator pothos {
-  provider = "prisma-pothos-types"
-}
-
-generator pothosCrud {
-  provider = "prisma-generator-pothos-codegen"
-  generatorConfigPath = "./pothos.config.js"
-}
-
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
