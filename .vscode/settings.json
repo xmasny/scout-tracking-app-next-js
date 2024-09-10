@@ -20,9 +20,18 @@
     "projectKey": "Scout-app"
   },
   "cSpell.words": [
-    "Odborky"
+    "expertske",
+    "expertska",
+    "Odborky",
+    "Odborka",
+    "stupen",
+    "stupne",
+    "vekova",
+    "vekove"
   ],
   "typescript.navigator.showIcons": true,
   "typescript.navigator.showDataTypes": true,
   "typescript.navigator.showVisibilityLabels": true,
+  "cSpell.language": "sk,en",
+  "files.autoSaveWhenNoErrors": true
 }
