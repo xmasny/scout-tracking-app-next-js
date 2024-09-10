@@ -7,126 +7,145 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model aktivne_ulohy_odborky {
-  aktivne_ulohy_odborky_id Int         @id @default(autoincrement())
+model AktivneUlohyOdborky {
+  aktivne_ulohy_odborky_id Int        @id @default(autoincrement())
   user_id                  Int
   stav_ulohy_id            Int
   uloha_id                 Int
-  start_date               DateTime    @db.DateTime(0)
-  end_date                 DateTime?   @db.DateTime(0)
-  osobne_data              osobne_data @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_aktivne_ulohy_odborky_osobne_data1")
-  stav_ulohy               stav_ulohy  @relation(fields: [stav_ulohy_id], references: [stav_ulohy_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_aktivne_ulohy_odborky_stav_ulohy1")
-  ulohy                    ulohy       @relation(fields: [uloha_id], references: [uloha_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_aktivne_ulohy_odborky_ulohy1")
+  start_date               DateTime   @db.DateTime(0)
+  end_date                 DateTime?  @db.DateTime(0)
+  osobne_data              OsobneData @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_aktivne_ulohy_odborky_osobne_data1")
+  stav_ulohy               StavUlohy  @relation(fields: [stav_ulohy_id], references: [stav_ulohy_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_aktivne_ulohy_odborky_stav_ulohy1")
+  ulohy                    Ulohy      @relation(fields: [uloha_id], references: [uloha_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_aktivne_ulohy_odborky_ulohy1")
 
   @@index([user_id], map: "fk_aktivne_ulohy_odborky_osobne_data1_idx")
   @@index([stav_ulohy_id], map: "fk_aktivne_ulohy_odborky_stav_ulohy1_idx")
   @@index([uloha_id], map: "fk_aktivne_ulohy_odborky_ulohy1_idx")
+  @@map("aktivne_ulohy_odborky")
 }
 
-model expertske_odborky {
-  expertske_odborky_id                                 Int       @id @unique(map: "expertske_odborky_id_UNIQUE") @default(autoincrement())
-  expertske_odborky_name                               String    @unique(map: "expertske_odborky_name_UNIQUE") @db.VarChar(50)
-  expertske_odborky_foto                               String    @db.VarChar(255)
-  program_program_expertske_odborkyToexpertske_odborky program[] @relation("program_expertske_odborkyToexpertske_odborky")
+model ExpertskeOdborky {
+  expertske_odborky_id   Int       @id @unique(map: "expertske_odborky_id_UNIQUE") @default(autoincrement())
+  expertske_odborky_name String    @unique(map: "expertske_odborky_name_UNIQUE") @db.VarChar(50)
+  expertske_odborky_foto String    @db.VarChar(255)
+  program                Program[] @relation("program_expertske_odborkyToexpertske_odborky")
+
+  @@map("expertske_odborky")
 }
 
-model osobne_data {
-  user_id               Int                     @id
-  meno                  String?                 @db.VarChar(50)
-  priezvisko            String?                 @db.VarChar(50)
-  adresa                String?                 @db.VarChar(255)
-  mobil                 String?                 @db.VarChar(20)
-  profile_foto          Bytes?                  @db.Blob
-  potvrdenie            Boolean                 @default(false)
-  aktivne_ulohy_odborky aktivne_ulohy_odborky[]
-  users                 users                   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_osobne_data_user1")
-  splneny_program       splneny_program[]
+model OsobneData {
+  user_id               Int                   @id
+  meno                  String?               @db.VarChar(50)
+  priezvisko            String?               @db.VarChar(50)
+  adresa                String?               @db.VarChar(255)
+  mobil                 String?               @db.VarChar(20)
+  profile_foto          Bytes?                @db.Blob
+  potvrdenie            Boolean               @default(false)
+  aktivne_ulohy_odborky AktivneUlohyOdborky[]
+  users                 Users                 @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_osobne_data_user1")
+  splneny_program       SplnenyProgram[]
+
+  @@map("osobne_data")
 }
 
-model program {
-  program_id                                                     Int                @id @default(autoincrement())
-  vekova_kat                                                     Int
-  program_kat                                                    Int
-  stupen                                                         Int?
-  expertske_odborky                                              Int?
-  program_name                                                   String             @db.VarChar(50)
-  program_photo                                                  String             @unique(map: "program_photo_UNIQUE") @db.VarChar(255)
-  program_info                                                   Json?
-  expertske_odborky_program_expertske_odborkyToexpertske_odborky expertske_odborky? @relation("program_expertske_odborkyToexpertske_odborky", fields: [expertske_odborky], references: [expertske_odborky_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_expertske_odborky1")
-  program_kat_program_program_katToprogram_kat                   program_kat        @relation("program_program_katToprogram_kat", fields: [program_kat], references: [program_kat_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_program_kat1")
-  stupen_program_stupenTostupen                                  stupen?            @relation("program_stupenTostupen", fields: [stupen], references: [stupen_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_stupen1")
-  vekova_kat_program_vekova_katTovekova_kat                      vekova_kat         @relation("program_vekova_katTovekova_kat", fields: [vekova_kat], references: [vekova_kat_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_vekova_kat1")
-  splneny_program                                                splneny_program[]
-  ulohy                                                          ulohy[]
+model Program {
+  program_id           Int               @id @default(autoincrement())
+  vekova_kat_id        Int               @map("vekova_kat")
+  program_kat_id       Int               @map("program_kat")
+  stupen_id            Int?              @map("stupen")
+  expertske_odborky_id Int?              @map("expertske_odborky")
+  program_name         String            @db.VarChar(50)
+  program_photo        String            @unique(map: "program_photo_UNIQUE") @db.VarChar(255)
+  program_info         Json?
+  expertske_odborky    ExpertskeOdborky? @relation("program_expertske_odborkyToexpertske_odborky", fields: [expertske_odborky_id], references: [expertske_odborky_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_expertske_odborky1")
+  program_kat          ProgramKat        @relation("program_program_katToprogram_kat", fields: [program_kat_id], references: [program_kat_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_program_kat1")
+  stupen               Stupen?           @relation("program_stupenTostupen", fields: [stupen_id], references: [stupen_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_stupen1")
+  vekova_kat           VekovaKat         @relation("program_vekova_katTovekova_kat", fields: [vekova_kat_id], references: [vekova_kat_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_program_vekova_kat1")
+  splneny_program      SplnenyProgram[]
+  ulohy                Ulohy[]
 
-  @@index([expertske_odborky], map: "fk_program_expertske_odborky1_idx")
-  @@index([program_kat], map: "fk_program_program_kat1_idx")
-  @@index([stupen], map: "fk_program_stupen1_idx")
-  @@index([vekova_kat], map: "fk_program_vekova_kat1_idx")
+  @@index([expertske_odborky_id], map: "fk_program_expertske_odborky1_idx")
+  @@index([program_kat_id], map: "fk_program_program_kat1_idx")
+  @@index([stupen_id], map: "fk_program_stupen1_idx")
+  @@index([vekova_kat_id], map: "fk_program_vekova_kat1_idx")
+  @@map("program")
 }
 
-model program_kat {
-  program_kat_id                           Int       @id @unique(map: "program_kat_id_UNIQUE") @default(autoincrement())
-  program_kat_name                         String    @unique(map: "program_kat_name_UNIQUE") @db.VarChar(50)
-  program_program_program_katToprogram_kat program[] @relation("program_program_katToprogram_kat")
+model ProgramKat {
+  program_kat_id   Int       @id @unique(map: "program_kat_id_UNIQUE") @default(autoincrement())
+  program_kat_name String    @unique(map: "program_kat_name_UNIQUE") @db.VarChar(50)
+  program          Program[] @relation("program_program_katToprogram_kat")
+
+  @@map("program_kat")
 }
 
-model roles {
+model Roles {
   role_id   Int     @id @default(autoincrement())
   role_name String  @db.VarChar(50)
-  users     users[]
+  users     Users[]
+
+  @@map("roles")
 }
 
-model splneny_program {
-  splneny_program_id Int         @id @default(autoincrement())
+model SplnenyProgram {
+  splneny_program_id Int        @id @default(autoincrement())
   user_id            Int
   program_id         Int
-  osobne_data        osobne_data @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_splneny_program_osobne_data1")
-  program            program     @relation(fields: [program_id], references: [program_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_splneny_program_program1")
+  osobne_data        OsobneData @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_splneny_program_osobne_data1")
+  program            Program    @relation(fields: [program_id], references: [program_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_splneny_program_program1")
 
   @@index([user_id], map: "fk_splneny_program_osobne_data1_idx")
   @@index([program_id], map: "fk_splneny_program_program1_idx")
+  @@map("splneny_program")
 }
 
-model stav_ulohy {
-  stav_ulohy_id         Int                     @id
-  stav_ulohy_name       String                  @db.VarChar(45)
-  aktivne_ulohy_odborky aktivne_ulohy_odborky[]
+model StavUlohy {
+  stav_ulohy_id         Int                   @id
+  stav_ulohy_name       String                @db.VarChar(45)
+  aktivne_ulohy_odborky AktivneUlohyOdborky[]
+
+  @@map("stav_ulohy")
 }
 
-model stupen {
-  stupen_id                      Int       @id @unique(map: "stupen_id_UNIQUE") @default(autoincrement())
-  stupen_name                    String    @unique(map: "stupen_name_UNIQUE") @db.VarChar(50)
-  program_program_stupenTostupen program[] @relation("program_stupenTostupen")
+model Stupen {
+  stupen_id   Int       @id @unique(map: "stupen_id_UNIQUE") @default(autoincrement())
+  stupen_name String    @unique(map: "stupen_name_UNIQUE") @db.VarChar(50)
+  program     Program[] @relation("program_stupenTostupen")
+
+  @@map("stupen")
 }
 
-model ulohy {
-  uloha_id               Int                     @id @default(autoincrement())
+model Ulohy {
+  uloha_id               Int                   @id @default(autoincrement())
   program_id             Int
   cislo_ulohy            Int
-  text_ulohy             String                  @db.VarChar(500)
+  text_ulohy             String                @db.VarChar(500)
   potrebny_pocet_poduloh Int?
   podulohy               Json?
-  aktivne_ulohy_odborky  aktivne_ulohy_odborky[]
-  program                program                 @relation(fields: [program_id], references: [program_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ulohy_program1")
+  aktivne_ulohy_odborky  AktivneUlohyOdborky[]
+  program                Program               @relation(fields: [program_id], references: [program_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ulohy_program1")
 
   @@index([program_id], map: "fk_ulohy_program1_idx")
+  @@map("ulohy")
 }
 
-model users {
-  user_id           Int          @id @default(autoincrement())
+model Users {
+  user_id           Int         @id @default(autoincrement())
   roles_role_id     Int?
-  email             String       @unique(map: "email_UNIQUE") @db.VarChar(100)
-  password          String       @db.VarChar(255)
-  datum_registracie DateTime?    @db.DateTime(0)
-  osobne_data       osobne_data?
-  roles             roles?       @relation(fields: [roles_role_id], references: [role_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_roles")
+  email             String      @unique(map: "email_UNIQUE") @db.VarChar(100)
+  password          String      @db.VarChar(255)
+  datum_registracie DateTime?   @db.DateTime(0)
+  osobne_data       OsobneData?
+  roles             Roles?      @relation(fields: [roles_role_id], references: [role_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_roles")
 
   @@index([roles_role_id], map: "fk_user_roles_idx")
+  @@map("users")
 }
 
-model vekova_kat {
-  vekova_kat_id                          Int       @id @unique(map: "vekova_kat_id_UNIQUE") @default(autoincrement())
-  vekova_kat_name                        String    @unique(map: "vekova_kat_name_UNIQUE") @db.VarChar(50)
-  program_program_vekova_katTovekova_kat program[] @relation("program_vekova_katTovekova_kat")
+model VekovaKat {
+  vekova_kat_id   Int       @id @unique(map: "vekova_kat_id_UNIQUE") @default(autoincrement())
+  vekova_kat_name String    @unique(map: "vekova_kat_name_UNIQUE") @db.VarChar(50)
+  program         Program[] @relation("program_vekova_katTovekova_kat")
+
+  @@map("vekova_kat")
 }

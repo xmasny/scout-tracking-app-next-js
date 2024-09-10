@@ -1,0 +1,51 @@
+scalar JSON
+
+type Uloha {
+	uloha_id: Int!
+	program_id: Int!
+	cislo_ulohy: Int!
+	text_ulohy: String!
+	potrebny_pocet_poduloh: Int
+	podulohy: JSON
+}
+
+type ProgramKat {
+	id: Int!
+	name: String!
+}
+
+type VekKat {
+	id: Int!
+	name: String
+}
+
+type Stupen {
+	id: Int!
+	name: String!
+}
+
+type ExpertskeOdborky {
+	id: Int!
+	name: String!
+	foto: String!
+}
+
+type Program {
+	program_id: Int!
+	vekova_kat: VekKat!
+	program_kat: ProgramKat!
+	program_name: String!
+	program_photo: String!
+	ulohy: [Uloha!]!
+	stupen: Stupen
+	expertske_odborky: ExpertskeOdborky
+	program_info: JSON
+}
+
+type Query {
+	program(program_kat_id: Int!, vekova_kat_id: Int!): [Program!]!
+	vekovaKat: [VekKat!]!
+	expertskeOdborky: [ExpertskeOdborky!]!
+	programKat: [ProgramKat!]!
+	stupen: [Stupen!]!
+}
