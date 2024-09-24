@@ -14,8 +14,8 @@ import VytvorNovuOdborkuDialog from '../../components/VytvorNovuOdborkuDialog/Vy
 import { VekKat } from '../../models/entities';
 import { GetVekKatOdborkyQuery } from '../../queries.graphql';
 import {
-	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdporkyFab, OdporkyPaper,
-	OdporkySearch
+	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdborkyFab, OdborkyPaper,
+	OdborkySearch
 } from './odborky.styles';
 
 const Odborky: React.FC = () => {

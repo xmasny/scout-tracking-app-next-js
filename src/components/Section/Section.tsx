@@ -1,7 +1,8 @@
 'use client';
 
-import { collect } from 'collect.js';
 import React, { useEffect, useState } from 'react';
+
+import { collect } from 'collect.js';
 import { remove } from 'remove-accents';
 
 import { useQuery } from '@apollo/client';
@@ -13,11 +14,6 @@ import { VekKatEnum } from '../../models/enums/vek-kat.enum';
 import { GetExpertskeOdborkyQuery, GetProgramOdborkyQuery } from '../../queries.graphql';
 import ActivityCard from './ActivityCard/ActivityCard';
 import Subsection from './Subsection/Subsection';
-
-import { ActivityCard, Subsection } from '@/components';
-import { ExpertskeOdborky, Program } from '@/models';
-import { ProgKatEnum, VekKatEnum } from '@/models/enums';
-import { GetExpertskeOdborkyQuery, GetProgramOdborkyQuery } from '@/queries.graphql';
 
 const { SKAUTI } = VekKatEnum;
 const { ODBORKY } = ProgKatEnum;
@@ -76,13 +72,13 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 	});
 
 	return (
-		<Box className={css.box}>
+		<Box /* className={css.box} */>
 			{programMapped.length !== 0 && (
 				<Accordion expanded>
 					<AccordionSummary>
 						<Typography variant="h4">{vekKatName}</Typography>
 					</AccordionSummary>
-					<AccordionDetails className={vekKatId === SKAUTI ? null : css.sectionOther}>
+					<AccordionDetails /* className={vekKatId === SKAUTI ? null : css.sectionOther} */>
 						{programMapped.length === 0 && <p>V danej kategorii sa nenachadza ziadna aktivita</p>}
 						{vekKatId === SKAUTI ? subsections() : programMapped}
 					</AccordionDetails>
