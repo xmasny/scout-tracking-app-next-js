@@ -24,5 +24,4 @@ const StyledCardTypography = styled(Typography)`
 	text-align: center;
 `;
 
-
 export { StyledCard as Card, StyledCardTypography as CardTypography };

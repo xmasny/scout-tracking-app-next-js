@@ -23,7 +23,7 @@ interface Props {
 	name: string;
 	id: number;
 	searchField: string;
-};
+}
 
 const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField }) => {
 	const { data: categoriesData, isLoading: categoriesLoading } = useGetAllCategories();

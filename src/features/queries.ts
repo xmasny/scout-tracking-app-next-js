@@ -10,7 +10,7 @@ const apiRoute = '/api/graphql';
 
 interface Data {
 	program: Program[];
-};
+}
 
 export const useGetAllCategories = () => {
 	return useQuery<AllCategories>({

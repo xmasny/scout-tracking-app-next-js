@@ -11,7 +11,7 @@ interface Props {
 		vychovny_zamer_odborky: string[];
 		odporucane_zdroje: string[];
 	};
-};
+}
 
 const ProgramInfo: React.FC<Props> = ({ info }) => {
 	return (

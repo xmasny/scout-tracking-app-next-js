@@ -21,27 +21,27 @@ interface Categories {
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
 	expertskeOdborky: [
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
 	programKat: [
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
 	stupen: [
 		{
 			id: number;
 			name: string;
-		}
+		},
 	];
-};
+}
 
 const VytvorNovuOdborkuDialog: React.FC<Props> = ({ handleClose, open }) => {
 	const { data, loading } = useQuery(GetAllCategoriesQuery);

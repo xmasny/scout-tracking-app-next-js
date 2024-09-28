@@ -11,7 +11,7 @@ interface Props {
 	open: boolean;
 	program: any;
 	handleClose: () => void;
-};
+}
 
 const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 	const [stupenProgram, setStupenProgram] = useState<Program>(program[0]);

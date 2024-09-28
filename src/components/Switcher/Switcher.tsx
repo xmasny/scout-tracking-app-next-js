@@ -16,4 +16,3 @@ const Switcher: React.FC = (props) => {
 };
 
 export default Switcher;
-

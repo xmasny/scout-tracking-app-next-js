@@ -3,8 +3,17 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { AddCircle, Delete } from '@mui/icons-material';
 import {
-	Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, IconButton, InputAdornment,
-	OutlinedInput, Tooltip
+	Box,
+	Button,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogTitle,
+	FormControl,
+	IconButton,
+	InputAdornment,
+	OutlinedInput,
+	Tooltip,
 } from '@mui/material';
 
 import { AddNewUlohyOdborkaMutation } from '../../../queries.graphql';
@@ -15,7 +24,7 @@ interface Props {
 	open: boolean;
 	handleClose: () => void;
 	data: NewOdborka;
-};
+}
 
 const VlozitUlohyDialog: React.FC<Props> = ({ handleClose, open, data }) => {
 	const { id, name, photo } = data.addNewOdborka;

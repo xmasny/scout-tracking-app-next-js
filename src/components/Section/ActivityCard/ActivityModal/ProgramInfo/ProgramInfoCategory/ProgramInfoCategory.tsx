@@ -7,7 +7,7 @@ import { StyledLi, StyledTitle } from './ProgramInfoCategory.styles';
 interface Props {
 	title: string;
 	items: string[];
-};
+}
 
 const ProgramInfoCategory: React.FC<Props> = ({ title, items }) => {
 	const mapItems = items.map((item: string) => {

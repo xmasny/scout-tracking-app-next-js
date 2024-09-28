@@ -1,5 +1,3 @@
 {
-  "recommendations": [
-    "miclo.sort-typescript-imports"
-  ]
+	"recommendations": ["miclo.sort-typescript-imports"]
 }
