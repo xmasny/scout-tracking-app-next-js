@@ -9,14 +9,22 @@ import { AddRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import { Box, CircularProgress, Fab, IconButton, TextField, Tooltip } from '@mui/material';
 
 import { useGetAllCategories } from '@/features/queries';
-import { VekKat } from '@/models';
+import { VekKat, VekKatEnum } from '@/models';
 
 import Section from '../../components/Section/Section';
 import VytvorNovuOdborkuDialog from '../../components/VytvorNovuOdborkuDialog/VytvorNovuOdborkuDialog';
 import {
-	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdborkyFab, OdborkyPaper,
-	OdborkySearch
+	BoxSpinner,
+	FloatingButton,
+	FloatingButtonLast,
+	OdborkyBox,
+	OdborkyContainer,
+	OdborkyFab,
+	OdborkyPaper,
+	OdborkySearch,
 } from './odborky.styles';
+
+const { VLCATA, SKAUTI, ROVERI } = VekKatEnum;
 
 const Odborky: React.FC = () => {
 	const { data, isLoading } = useGetAllCategories();
@@ -40,9 +48,11 @@ const Odborky: React.FC = () => {
 		setSearchField(remove(toLowerCase));
 	};
 
-	const sections = data?.vekovaKat.map((section: VekKat) => {
-		return <Section key={section.id} id={section.id} name={section.name} searchField={searchField} />;
-	});
+	const sections = data?.vekovaKat
+		.filter((vekKat) => [VLCATA, SKAUTI, ROVERI].includes(vekKat.id))
+		.map((section: VekKat) => {
+			return <Section key={section.id} id={section.id} name={section.name} searchField={searchField} />;
+		});
 
 	return (
 		<Box>

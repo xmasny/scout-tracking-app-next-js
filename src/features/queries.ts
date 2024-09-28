@@ -22,6 +22,7 @@ export const useGetAllCategories = () => {
 export const useGetProgramOdborky = (programKatId: number, vekovaKat: VekKat) => {
 	return useQuery<Data>({
 		queryKey: ['odborky', vekovaKat.name],
-		queryFn: async () => request(apiRoute, GetProgramOdborkyQuery, { programKatId, vekovaKatId: vekovaKat.id }),
+		queryFn: async () =>
+			request(apiRoute, GetProgramOdborkyQuery(vekovaKat.id), { programKatId, vekovaKatId: vekovaKat.id }),
 	});
 };

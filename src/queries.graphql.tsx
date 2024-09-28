@@ -1,40 +1,52 @@
 import gql from 'graphql-tag';
 
-export const GetProgramOdborkyQuery = gql`
-	query Query($programKatId: Int!, $vekovaKatId: Int!) {
-		program(program_kat_id: $programKatId, vekova_kat_id: $vekovaKatId) {
-			program_id
-			vekova_kat {
-				id
-				name
-			}
-			program_kat {
-				id
-				name
-			}
-			program_name
-			program_photo
-			ulohy {
-				uloha_id
-				program_id
-				cislo_ulohy
-				text_ulohy
-				potrebny_pocet_poduloh
-				podulohy
-			}
-			stupen {
-				id
-				name
-			}
+import { VekKatEnum } from '@/models/enums/vek-kat.enum';
+
+const { SKAUTI, ROVERI } = VekKatEnum;
+
+export const GetProgramOdborkyQuery = (vekKatId: number) => {
+	const stupen = /* GraphQL */ `
+		stupen {
+			id
+			name
+			}`;
+
+	const expertskeOdborky = /* GraphQL */ `
 			expertske_odborky {
 				id
 				name
 				foto
+			}`;
+
+	return gql`
+		query Query($programKatId: Int!, $vekovaKatId: Int!) {
+			program(program_kat_id: $programKatId, vekova_kat_id: $vekovaKatId) {
+				program_id
+				vekova_kat {
+					id
+					name
+				}
+				program_kat {
+					id
+					name
+				}
+				program_name
+				program_photo
+				ulohy {
+					uloha_id
+					program_id
+					cislo_ulohy
+					text_ulohy
+					potrebny_pocet_poduloh
+					podulohy
+				}
+				${[SKAUTI, ROVERI].includes(vekKatId) ? stupen : ''}
+				${[SKAUTI].includes(vekKatId) ? expertskeOdborky : ''}
+				program_info
 			}
-			program_info
 		}
-	}
-`;
+	`;
+};
 
 export const GetVekKatOdborkyQuery = gql`
 	query GetVekKatOdborky {
