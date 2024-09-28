@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 import { Program } from '../../../../models/entities';
@@ -16,18 +18,14 @@ const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 	const [stupenButtonName, setStupenButtonName] = useState<string>('červený');
 	const [buttonCollor, setButtonCollor] = useState<'error' | 'success'>('error');
 
-	const { name, photo, ulohy, info, stupen, id } = stupenProgram;
+	const { program_name, program_photo, ulohy, info, stupen, program_id } = stupenProgram;
 
 	const programUlohyMap = ulohy.map((uloha: any) => {
 		const programPodulohyMap = uloha.podulohy?.map((poduloha: any) => {
-			return (
-				<li key={poduloha} className={css.spaceBetween}>
-					{poduloha}
-				</li>
-			);
+			return <li key={poduloha}>{poduloha}</li>;
 		});
 		return (
-			<li key={uloha.uloha_id} className={css.spaceBetween}>
+			<li key={uloha.uloha_id}>
 				{uloha.text_ulohy}
 				<ul>{programPodulohyMap}</ul>
 			</li>
@@ -51,15 +49,15 @@ const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 	};
 
 	const handleChoose = () => {
-		console.log(id);
+		console.log(program_id);
 	};
 
 	return (
 		<Box>
 			<Dialog open={open} onClose={handleClose} closeAfterTransition onBackdropClick={handleClose}>
-				<DialogTitle className={css.dialogTitle}>
-					<img className={css.image} src={photo} alt={name} />
-					{name}
+				<DialogTitle>
+					<Image src={program_photo} alt={program_name} />
+					{program_name}
 				</DialogTitle>
 				<DialogContent>
 					<ol>{programUlohyMap}</ol>

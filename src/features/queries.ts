@@ -1,0 +1,27 @@
+import { request } from 'graphql-request';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { AllCategories, Program, VekKat } from '@/models';
+
+import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphql';
+
+const apiRoute = '/api/graphql';
+
+type Data = {
+	program: Program[];
+};
+
+export const useGetAllCategories = () => {
+	return useQuery<AllCategories>({
+		queryKey: ['allCategories'],
+		queryFn: async () => request(apiRoute, GetAllCategoriesQuery),
+	});
+};
+
+export const useGetProgramOdborky = (programKatId: number, vekovaKat: VekKat) => {
+	return useQuery<Data>({
+		queryKey: ['odborky', vekovaKat.name],
+		queryFn: async () => request(apiRoute, GetProgramOdborkyQuery, { programKatId, vekovaKatId: vekovaKat.id }),
+	});
+};

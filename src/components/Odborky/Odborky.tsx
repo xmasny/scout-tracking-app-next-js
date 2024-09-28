@@ -5,21 +5,21 @@ import ScrollToTop from 'react-scroll-up';
 
 import { remove } from 'remove-accents';
 
-import { useQuery } from '@apollo/client';
 import { AddRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import { Box, CircularProgress, Fab, IconButton, TextField, Tooltip } from '@mui/material';
 
+import { useGetAllCategories } from '@/features/queries';
+import { VekKat } from '@/models';
+
 import Section from '../../components/Section/Section';
 import VytvorNovuOdborkuDialog from '../../components/VytvorNovuOdborkuDialog/VytvorNovuOdborkuDialog';
-import { VekKat } from '../../models/entities';
-import { GetVekKatOdborkyQuery } from '../../queries.graphql';
 import {
 	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdborkyFab, OdborkyPaper,
 	OdborkySearch
 } from './odborky.styles';
 
 const Odborky: React.FC = () => {
-	const { data: vekKatData, loading: vekKatLoading } = useQuery(GetVekKatOdborkyQuery);
+	const { data, isLoading } = useGetAllCategories();
 
 	const [open, setOpen] = useState<boolean>(false);
 	const handleOpen = () => setOpen(true);
@@ -27,7 +27,7 @@ const Odborky: React.FC = () => {
 
 	const [searchField, setSearchField] = useState<string>('');
 
-	if (vekKatLoading) {
+	if (isLoading) {
 		return (
 			<BoxSpinner>
 				<CircularProgress color="secondary" />
@@ -40,7 +40,7 @@ const Odborky: React.FC = () => {
 		setSearchField(remove(toLowerCase));
 	};
 
-	const sections = vekKatData.vekovaKat.map((section: VekKat) => {
+	const sections = data?.vekovaKat.map((section: VekKat) => {
 		return <Section key={section.id} id={section.id} name={section.name} searchField={searchField} />;
 	});
 

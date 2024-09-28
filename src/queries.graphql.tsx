@@ -1,16 +1,23 @@
 import gql from 'graphql-tag';
 
 export const GetProgramOdborkyQuery = gql`
-	query GetProgramOdborky($programId: Int!, $vekovaKatId: Int!) {
-		program(program_id: $programId, vekova_kat_id: $vekovaKatId) {
-			id
+	query Query($programKatId: Int!, $vekovaKatId: Int!) {
+		program(program_kat_id: $programKatId, vekova_kat_id: $vekovaKatId) {
+			program_id
 			vekova_kat {
 				id
+				name
 			}
-			name
-			photo
+			program_kat {
+				id
+				name
+			}
+			program_name
+			program_photo
 			ulohy {
 				uloha_id
+				program_id
+				cislo_ulohy
 				text_ulohy
 				potrebny_pocet_poduloh
 				podulohy
@@ -21,8 +28,10 @@ export const GetProgramOdborkyQuery = gql`
 			}
 			expertske_odborky {
 				id
+				name
+				foto
 			}
-			info
+			program_info
 		}
 	}
 `;

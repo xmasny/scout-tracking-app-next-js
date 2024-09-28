@@ -5,13 +5,13 @@ import React, { useEffect, useState } from 'react';
 import { collect } from 'collect.js';
 import { remove } from 'remove-accents';
 
-import { useQuery } from '@apollo/client';
 import { Accordion, AccordionDetails, AccordionSummary, Box, CircularProgress, Typography } from '@mui/material';
+
+import { useGetAllCategories, useGetProgramOdborky } from '@/features/queries';
 
 import { ExpertskeOdborky, Program } from '../../models/entities';
 import { ProgKatEnum } from '../../models/enums/prog-kat.enum';
 import { VekKatEnum } from '../../models/enums/vek-kat.enum';
-import { GetExpertskeOdborkyQuery, GetProgramOdborkyQuery } from '../../queries.graphql';
 import ActivityCard from './ActivityCard/ActivityCard';
 import Subsection from './Subsection/Subsection';
 
@@ -24,30 +24,26 @@ type Props = {
 	searchField: string;
 };
 
-type Data = {
-	program: Program[];
-};
-
 const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField }) => {
-	const { data: expertskeOdborkyData, loading: expertskeOdborkyLoading } = useQuery(GetExpertskeOdborkyQuery);
-
-	const { data: programData, loading: programLoading } = useQuery(GetProgramOdborkyQuery, {
-		variables: { programId: ODBORKY, vekovaKatId: vekKatId },
+	const { data: categoriesData, isLoading: categoriesLoading } = useGetAllCategories();
+	const { data: programData, isLoading: programLoading } = useGetProgramOdborky(ODBORKY, {
+		id: vekKatId,
+		name: vekKatName,
 	});
 
 	const [filteredProgram, setFilteredProgram] = useState<Program[]>();
 
 	useEffect(() => {
-		if (!programLoading) {
-			const filter = programData.program.filter((value: Program) =>
-				remove(value.name.toLowerCase()).includes(searchField)
-			);
+		if (programData) {
+			const filter = programData.program.filter((value: Program) => {
+				return remove(value.program_name.toLowerCase()).includes(searchField);
+			});
 
 			setFilteredProgram(filter);
 		}
-	}, [programData, searchField, programLoading]);
+	}, [programData, searchField]);
 
-	if (expertskeOdborkyLoading || programLoading) {
+	if (categoriesLoading || programLoading) {
 		return (
 			<Box>
 				<CircularProgress color="secondary" />
@@ -56,10 +52,10 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 	}
 
 	const collection = collect(filteredProgram);
-	const program = collection.groupBy('name').toArray();
+	const program = collection.groupBy('program_name').toArray();
 
 	const subsections = () =>
-		expertskeOdborkyData.expertskeOdborky.map((subsection: ExpertskeOdborky) => {
+		categoriesData?.expertskeOdborky.map((subsection: ExpertskeOdborky) => {
 			const expFiltered = program.filter(
 				(odborka: any) => odborka.items[0].expertske_odborky.id === subsection.id
 			);
@@ -72,13 +68,13 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 	});
 
 	return (
-		<Box /* className={css.box} */>
+		<Box>
 			{programMapped.length !== 0 && (
 				<Accordion expanded>
 					<AccordionSummary>
 						<Typography variant="h4">{vekKatName}</Typography>
 					</AccordionSummary>
-					<AccordionDetails /* className={vekKatId === SKAUTI ? null : css.sectionOther} */>
+					<AccordionDetails>
 						{programMapped.length === 0 && <p>V danej kategorii sa nenachadza ziadna aktivita</p>}
 						{vekKatId === SKAUTI ? subsections() : programMapped}
 					</AccordionDetails>
