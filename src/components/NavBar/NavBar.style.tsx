@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Toolbar } from '@mui/material';
 
 export const StickNavBar = styled.div`
-	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
 	z-index: 100;

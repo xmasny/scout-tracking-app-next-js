@@ -14,7 +14,8 @@
     "tab.activeBorder": "#ab307e"
   },
   "peacock.color": "#832561",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
+  "files.autoSave": "off",
   "sonarlint.connectedMode.project": {
     "connectionId": "localhost",
     "projectKey": "Scout-app"

@@ -4,7 +4,7 @@ import { Accordion, AccordionDetails } from '@mui/material';
 
 import { StyledLi, StyledTitle } from './ProgramInfoCategory.styles';
 
-type Props = {
+interface Props {
 	title: string;
 	items: string[];
 };

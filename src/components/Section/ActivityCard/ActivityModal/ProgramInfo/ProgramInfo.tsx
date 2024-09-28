@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 import ProgramInfoCategory from './ProgramInfoCategory/ProgramInfoCategory';
 
-type Props = {
+interface Props {
 	info: {
 		poznamky: string[];
 		odporucana_literatura: string[];
@@ -29,11 +29,3 @@ const ProgramInfo: React.FC<Props> = ({ info }) => {
 };
 
 export default ProgramInfo;
-
-/*   const titleSetter = (keyName: string) => {
-    if (keyName === 'poznamky') return 'Poznámky';
-    if (keyName === 'odporucana_literatura') return 'Odporúčaná literatúra';
-    if (keyName === 'vychovny_zamer_odborky') return 'Výchovný zámer odborky';
-    if (keyName === 'odporucane_zdroje') return 'Odporúčané zdroje';
-    return undefined;
-  };*/

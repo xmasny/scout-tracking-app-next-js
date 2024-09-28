@@ -8,7 +8,7 @@ import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphq
 
 const apiRoute = '/api/graphql';
 
-type Data = {
+interface Data {
 	program: Program[];
 };
 

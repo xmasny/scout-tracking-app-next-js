@@ -5,7 +5,7 @@ import { Accordion, AccordionSummary, Typography } from '@mui/material';
 import ActivityCard from '../ActivityCard/ActivityCard';
 import { StyledBox, StyledSubsection } from './Subsection.styles';
 
-type Props = {
+interface Props {
 	id: number;
 	name: string;
 	program: any;

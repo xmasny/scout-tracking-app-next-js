@@ -1,23 +1,20 @@
-.dialogTitle {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-grow: 1;
-  font-size: 3rem;
-}
+import Image from 'next/image';
 
-.image {
-  display: grid;
-  justify-self: center;
-  max-width: 150px;
-}
+import styled from '@emotion/styled';
+import { DialogTitle } from '@mui/material';
 
-.spaceBetween {
-  margin-bottom: 10px;
-}
+const StyledDialogTitle = styled(DialogTitle)`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-grow: 1;
+	font-size: 3rem;
+`;
 
-.closeButton {
-  align-self: flex-start;
-  justify-self: flex-end;
-  padding: 15px;
-}/*# sourceMappingURL=ActivityModal.module.css.map */
+const StyledImage = styled(Image)`
+	display: grid;
+	justify-self: center;
+	max-width: 150px;
+`;
+
+export { StyledDialogTitle as DialogTitle, StyledImage };

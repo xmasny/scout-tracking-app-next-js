@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { collect } from 'collect.js';
 import { remove } from 'remove-accents';
 
-import { Accordion, AccordionDetails, AccordionSummary, Box, CircularProgress, Typography } from '@mui/material';
+import { Accordion, AccordionSummary, Box, CircularProgress, Typography } from '@mui/material';
 
 import { useGetAllCategories, useGetProgramOdborky } from '@/features/queries';
 
@@ -13,12 +13,13 @@ import { ExpertskeOdborky, Program } from '../../models/entities';
 import { ProgKatEnum } from '../../models/enums/prog-kat.enum';
 import { VekKatEnum } from '../../models/enums/vek-kat.enum';
 import ActivityCard from './ActivityCard/ActivityCard';
+import { AccordionDetails, StyledBox, StyledBoxSpinner } from './Section.styles';
 import Subsection from './Subsection/Subsection';
 
 const { SKAUTI } = VekKatEnum;
 const { ODBORKY } = ProgKatEnum;
 
-type Props = {
+interface Props {
 	name: string;
 	id: number;
 	searchField: string;
@@ -45,9 +46,9 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 
 	if (categoriesLoading || programLoading) {
 		return (
-			<Box>
+			<StyledBoxSpinner>
 				<CircularProgress color="secondary" />
-			</Box>
+			</StyledBoxSpinner>
 		);
 	}
 
@@ -68,7 +69,7 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 	});
 
 	return (
-		<Box>
+		<StyledBox>
 			{programMapped.length !== 0 && (
 				<Accordion expanded>
 					<AccordionSummary>
@@ -80,7 +81,7 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 					</AccordionDetails>
 				</Accordion>
 			)}
-		</Box>
+		</StyledBox>
 	);
 };
 

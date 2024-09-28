@@ -11,7 +11,7 @@ import { AddNewUlohyOdborkaMutation } from '../../../queries.graphql';
 import { NewOdborka, Ulohy } from '../../../types/types';
 import { FormMarginBox, IconButtonsBox } from './VlozitUlohyDialog.styles';
 
-type Props = {
+interface Props {
 	open: boolean;
 	handleClose: () => void;
 	data: NewOdborka;
@@ -25,8 +25,6 @@ const VlozitUlohyDialog: React.FC<Props> = ({ handleClose, open, data }) => {
 	]);
 
 	const [addNewOdborkaUlohyMutation] = useMutation<NewOdborka>(AddNewUlohyOdborkaMutation);
-
-	console.log(form);
 
 	const addUlohuHandle = () => {
 		setCisloUlohy(cisloUlohy + 1);

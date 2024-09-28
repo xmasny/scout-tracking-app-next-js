@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import Image from 'next/image';
-
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent } from '@mui/material';
 
 import { Program } from '../../../../models/entities';
+import { DialogTitle, StyledImage } from './ActivityModal.styles';
+import { StyledLi } from './ProgramInfo';
 import ProgramInfo from './ProgramInfo/ProgramInfo';
 
-type Props = {
+interface Props {
 	open: boolean;
 	program: any;
 	handleClose: () => void;
@@ -22,13 +22,13 @@ const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 
 	const programUlohyMap = ulohy.map((uloha: any) => {
 		const programPodulohyMap = uloha.podulohy?.map((poduloha: any) => {
-			return <li key={poduloha}>{poduloha}</li>;
+			return <StyledLi key={poduloha}>{poduloha}</StyledLi>;
 		});
 		return (
-			<li key={uloha.uloha_id}>
+			<StyledLi key={uloha.uloha_id}>
 				{uloha.text_ulohy}
 				<ul>{programPodulohyMap}</ul>
-			</li>
+			</StyledLi>
 		);
 	});
 
@@ -54,9 +54,9 @@ const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 
 	return (
 		<Box>
-			<Dialog open={open} onClose={handleClose} closeAfterTransition onBackdropClick={handleClose}>
+			<Dialog open={open} onClose={handleClose} closeAfterTransition>
 				<DialogTitle>
-					<Image src={program_photo} alt={program_name} />
+					<StyledImage src={program_photo} alt={program_name} />
 					{program_name}
 				</DialogTitle>
 				<DialogContent>

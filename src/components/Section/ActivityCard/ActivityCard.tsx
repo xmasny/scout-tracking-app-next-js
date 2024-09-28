@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, CardContent, CardMedia } from '@mui/material';
 
 import { Program } from '@/models';
 
+import { Card, CardTypography } from './ActivityCard.styles';
 import ActivityModal from './ActivityModal/ActivityModal';
 
-type Props = {
+interface Props {
 	program: Program[];
-};
+}
 
 const ActivityCard: React.FC<Props> = ({ program }) => {
 	const [open, setOpen] = useState<boolean>(false);
@@ -22,9 +23,9 @@ const ActivityCard: React.FC<Props> = ({ program }) => {
 				<Card variant="outlined" sx={{ borderColor: 'white' }}>
 					<CardMedia component="img" image={program_photo} alt={program_name} />
 					<CardContent>
-						<Typography sx={{ fontWeight: 'bold' }} variant="h6">
+						<CardTypography sx={{ fontWeight: 'bold' }} variant="h6">
 							{program_name}
-						</Typography>
+						</CardTypography>
 					</CardContent>
 				</Card>
 			</Box>

@@ -16,30 +16,30 @@ interface Props {
 	handleClose: () => void;
 }
 
-type Categories = {
+interface Categories {
 	vekovaKat: [
 		{
 			id: number;
 			name: string;
-		},
+		}
 	];
 	expertskeOdborky: [
 		{
 			id: number;
 			name: string;
-		},
+		}
 	];
 	programKat: [
 		{
 			id: number;
 			name: string;
-		},
+		}
 	];
 	stupen: [
 		{
 			id: number;
 			name: string;
-		},
+		}
 	];
 };
 
