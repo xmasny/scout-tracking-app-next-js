@@ -14,7 +14,8 @@ const StyledDialogTitle = styled(DialogTitle)`
 const StyledImage = styled(Image)`
 	display: grid;
 	justify-self: center;
-	max-width: 150px;
+	max-width: 250px;
+	max-height: 200px;
 `;
 
 export { StyledDialogTitle as DialogTitle, StyledImage };

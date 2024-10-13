@@ -6,7 +6,7 @@ export const vekovaKat = async () => {
 			vekova_kat_id: 'asc',
 		},
 	});
-	return vekoveKat.map((vekovaKat) => ({
+	return vekoveKat.map((vekovaKat: { vekova_kat_id: number; vekova_kat_name: string }) => ({
 		id: vekovaKat.vekova_kat_id,
 		name: vekovaKat.vekova_kat_name,
 	}));
@@ -18,11 +18,17 @@ export const expertskeOdborky = async () => {
 			expertske_odborky_id: 'asc',
 		},
 	});
-	return expertskeOdborky.map((expertskaOdborka) => ({
-		id: expertskaOdborka.expertske_odborky_id,
-		name: expertskaOdborka.expertske_odborky_name,
-		foto: expertskaOdborka.expertske_odborky_foto,
-	}));
+	return expertskeOdborky.map(
+		(expertskaOdborka: {
+			expertske_odborky_id: number;
+			expertske_odborky_name: string;
+			expertske_odborky_foto: string;
+		}) => ({
+			id: expertskaOdborka.expertske_odborky_id,
+			name: expertskaOdborka.expertske_odborky_name,
+			foto: expertskaOdborka.expertske_odborky_foto,
+		})
+	);
 };
 
 export const programKat = async () => {
@@ -31,7 +37,7 @@ export const programKat = async () => {
 			program_kat_id: 'asc',
 		},
 	});
-	return programKats.map((programKat) => ({
+	return programKats.map((programKat: { program_kat_id: number; program_kat_name: string }) => ({
 		id: programKat.program_kat_id,
 		name: programKat.program_kat_name,
 	}));
@@ -43,7 +49,7 @@ export const stupen = async () => {
 			stupen_id: 'asc',
 		},
 	});
-	return stupne.map((stupen) => ({
+	return stupne.map((stupen: { stupen_id: number; stupen_name: string }) => ({
 		id: stupen.stupen_id,
 		name: stupen.stupen_name,
 	}));
@@ -68,24 +74,26 @@ export const program = async (_: any, { program_kat_id, vekova_kat_id }: any) =>
 		},
 	});
 
-	return programs.map((program) => ({
-		...program,
-		program_kat: {
-			id: program.program_kat.program_kat_id,
-			name: program.program_kat.program_kat_name,
-		},
-		vekova_kat: {
-			id: program.vekova_kat.vekova_kat_id,
-			name: program.vekova_kat.vekova_kat_name,
-		},
-		stupen: {
-			id: program.stupen?.stupen_id,
-			name: program.stupen?.stupen_name,
-		},
-		expertske_odborky: {
-			id: program.expertske_odborky?.expertske_odborky_id,
-			name: program.expertske_odborky?.expertske_odborky_name,
-			foto: program.expertske_odborky?.expertske_odborky_foto,
-		},
-	}));
+	return programs.map(
+		(program) => ({
+			...program,
+			program_kat: {
+				id: program.program_kat.program_kat_id,
+				name: program.program_kat.program_kat_name,
+			},
+			vekova_kat: {
+				id: program.vekova_kat.vekova_kat_id,
+				name: program.vekova_kat.vekova_kat_name,
+			},
+			stupen: {
+				id: program.stupen?.stupen_id,
+				name: program.stupen?.stupen_name,
+			},
+			expertske_odborky: {
+				id: program.expertske_odborky?.expertske_odborky_id,
+				name: program.expertske_odborky?.expertske_odborky_name,
+				foto: program.expertske_odborky?.expertske_odborky_foto,
+			},
+		})
+	);
 };

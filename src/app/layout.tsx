@@ -19,7 +19,16 @@ const client = new ApolloClient({
 });
 
 // Create a client
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			gcTime: Infinity,
+			staleTime: Infinity,
+			retry: true,
+			networkMode: 'offlineFirst'
+		}
+	}
+});
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (

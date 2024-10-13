@@ -21,7 +21,7 @@ const ActivityCard: React.FC<Props> = ({ program }) => {
 		<>
 			<Box onClick={handleOpen}>
 				<Card variant="outlined" sx={{ borderColor: 'white' }}>
-					<CardMedia component="img" image={program_photo} alt={program_name} />
+					<CardMedia component="img" image={program_photo} alt={program_name}/>
 					<CardContent>
 						<CardTypography sx={{ fontWeight: 'bold' }} variant="h6">
 							{program_name}

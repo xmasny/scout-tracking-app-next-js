@@ -20,7 +20,17 @@
 		"connectionId": "localhost",
 		"projectKey": "Scout-app"
 	},
-	"cSpell.words": ["expertske", "expertska", "Odborky", "Odborka", "stupen", "stupne", "vekova", "vekove"],
+	"cSpell.words": [
+		"expertska",
+		"expertske",
+		"Odborka",
+		"Odborky",
+		"stupen",
+		"stupne",
+		"unoptimized",
+		"vekova",
+		"vekove"
+	],
 	"typescript.navigator.showIcons": true,
 	"typescript.navigator.showDataTypes": true,
 	"typescript.navigator.showVisibilityLabels": true,

@@ -4,6 +4,14 @@ const nextConfig = {
 		buildActivityPosition: 'bottom-right',
 		buildActivity: true,
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'www.skauting.sk',
+			},
+		],
+	},
 };
 
 export default nextConfig;

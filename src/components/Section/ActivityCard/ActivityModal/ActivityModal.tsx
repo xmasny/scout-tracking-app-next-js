@@ -16,7 +16,7 @@ interface Props {
 const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 	const [stupenProgram, setStupenProgram] = useState<Program>(program[0]);
 	const [stupenButtonName, setStupenButtonName] = useState<string>('červený');
-	const [buttonCollor, setButtonCollor] = useState<'error' | 'success'>('error');
+	const [buttonColor, setButtonColor] = useState<'error' | 'success'>('error');
 
 	const { program_name, program_photo, ulohy, info, stupen, program_id } = stupenProgram;
 
@@ -35,11 +35,11 @@ const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 	useEffect(() => {
 		if (stupen?.id === 1) {
 			setStupenButtonName('Zobraziť červený stupeň');
-			setButtonCollor('error');
+			setButtonColor('error');
 		}
 		if (stupen?.id === 2) {
 			setStupenButtonName('Zobraziť zelený stupeň');
-			setButtonCollor('success');
+			setButtonColor('success');
 		}
 	}, [stupen?.id]);
 
@@ -54,9 +54,9 @@ const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 
 	return (
 		<Box>
-			<Dialog open={open} onClose={handleClose} closeAfterTransition>
+			<Dialog open={open} onClose={handleClose} closeAfterTransition >
 				<DialogTitle>
-					<StyledImage src={program_photo} alt={program_name} />
+					<StyledImage src={program_photo} alt={program_name} width={200} height={200} layout='intrinsic'/>
 					{program_name}
 				</DialogTitle>
 				<DialogContent>
@@ -65,7 +65,7 @@ const ActivityModal: React.FC<Props> = ({ handleClose, open, program }) => {
 				</DialogContent>
 				<DialogActions>
 					{program.length === 2 && (
-						<Button variant="contained" color={buttonCollor} onClick={handleChangeStupen}>
+						<Button variant="contained" color={buttonColor} onClick={handleChangeStupen}>
 							{stupenButtonName}
 						</Button>
 					)}
