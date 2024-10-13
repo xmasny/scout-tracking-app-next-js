@@ -75,7 +75,7 @@ export const program = async (_: any, { program_kat_id, vekova_kat_id }: any) =>
 	});
 
 	return programs.map(
-		(program) => ({
+		(program: any) => ({
 			...program,
 			program_kat: {
 				id: program.program_kat.program_kat_id,
