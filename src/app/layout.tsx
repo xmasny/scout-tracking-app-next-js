@@ -12,9 +12,10 @@ import NavBar from '@/components/NavBar/NavBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const url = process.env.NEXT_PUBLIC_BASE_URL
+
 const client = new ApolloClient({
-	uri: 'http://localhost:3000/api/graphql',
-	//uri: 'https://scout-tracking-app-graphql.herokuapp.com/graphql',
+	uri: `${url}/api/graphql`,
 	cache: new InMemoryCache(),
 });
 
