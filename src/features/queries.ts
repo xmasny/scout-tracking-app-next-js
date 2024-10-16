@@ -8,11 +8,11 @@ import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphq
 
 const url = process.env.NEXT_PUBLIC_BASE_URL
 
-console.log(url);
+console.log('queries', url);
 
 const apiRoute = `${url}/api/graphql`;
 
-console.log(apiRoute);
+console.log('queries', apiRoute);
 
 interface Data {
 	program: Program[];
