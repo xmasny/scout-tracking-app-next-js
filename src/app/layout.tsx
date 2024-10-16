@@ -14,6 +14,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 const url = process.env.NEXT_PUBLIC_BASE_URL
 
+console.log(url);
+
 const client = new ApolloClient({
 	uri: `${url}/api/graphql`,
 	cache: new InMemoryCache(),
