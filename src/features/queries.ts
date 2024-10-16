@@ -6,7 +6,9 @@ import { AllCategories, Program, VekKat } from '@/models';
 
 import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphql';
 
-const apiRoute = '/api/graphql';
+const url = process.env.NEXT_PUBLIC_BASE_URL
+
+const apiRoute = `${url}/api/graphql`;
 
 interface Data {
 	program: Program[];
