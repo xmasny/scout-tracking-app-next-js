@@ -76,6 +76,12 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Run Prisma generate
         run: ${{ steps.detect-package-manager.outputs.runner }} prisma-generate
+      - name: Create env file
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_BASE_URL=${{ vars.NEXT_PUBLIC_BASE_URL }}  >> .env
+          echo DATABASE_URL=${{ vars.DATABASE_URL }} >> .env
+          cat .env
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
