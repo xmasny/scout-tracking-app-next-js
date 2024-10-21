@@ -6,11 +6,7 @@ import { AllCategories, Program, VekKat } from '@/models';
 
 import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphql';
 
-const url = process.env.NEXT_PUBLIC_BASE_URL
-
-console.log(process.env);
-
-console.log('queries', url);
+const url = process.env.NEXT_PUBLIC_VERCEL_URL
 
 const apiRoute = `${url}/api/graphql`;
 

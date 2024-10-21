@@ -12,7 +12,7 @@ import NavBar from '@/components/NavBar/NavBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const url = process.env.NEXT_PUBLIC_BASE_URL
+const url = process.env.NEXT_PUBLIC_VERCEL_URL
 
 console.log('layout', url);
 
