@@ -4,7 +4,7 @@ import './globals.css';
 
 import { Inter } from 'next/font/google';
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
@@ -17,7 +17,8 @@ const url = process.env.NEXT_PUBLIC_VERCEL_URL
 console.log('layout', url);
 
 const client = new ApolloClient({
-	uri: `${url}/api/graphql`,
+	ssrMode: typeof window === 'undefined',
+	link: new HttpLink({ uri: `${url}/api/graphql`, credentials: 'same-origin' }),
 	cache: new InMemoryCache(),
 	devtools: {
 		enabled: true,
