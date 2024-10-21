@@ -8,6 +8,8 @@ import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphq
 
 const url = process.env.NEXT_PUBLIC_BASE_URL
 
+console.log(process.env);
+
 console.log('queries', url);
 
 const apiRoute = `${url}/api/graphql`;
