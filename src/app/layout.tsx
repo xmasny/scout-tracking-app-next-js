@@ -19,6 +19,9 @@ console.log('layout', url);
 const client = new ApolloClient({
 	uri: `${url}/api/graphql`,
 	cache: new InMemoryCache(),
+	devtools: {
+		enabled: true,
+	}
 });
 
 // Create a client
