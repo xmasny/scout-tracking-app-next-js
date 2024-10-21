@@ -8,7 +8,7 @@ import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphq
 
 const url = process.env.NEXT_PUBLIC_VERCEL_URL
 
-const apiRoute = `https://scout-tracking-app-next-js.vercel.app/api/graphql`;
+const apiRoute = `${url}/api/graphql`;
 
 console.log('queries', apiRoute);
 

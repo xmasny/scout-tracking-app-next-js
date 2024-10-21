@@ -12,12 +12,12 @@ import NavBar from '@/components/NavBar/NavBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
-/* const url = process.env.NEXT_PUBLIC_VERCEL_URL
+const url = process.env.NEXT_PUBLIC_VERCEL_URL
 
-console.log('layout', url); */
+console.log('layout', url);
 
 const client = new ApolloClient({
-	uri: `https://scout-tracking-app-next-js.vercel.app/api/graphql`,
+	uri: `${url}/api/graphql`,
 	cache: new InMemoryCache(),
 	devtools: {
 		enabled: true,
