@@ -35,5 +35,7 @@
 	"typescript.navigator.showDataTypes": true,
 	"typescript.navigator.showVisibilityLabels": true,
 	"cSpell.language": "sk,en",
-	"files.autoSaveWhenNoErrors": true
+	"files.autoSaveWhenNoErrors": true,
+	"WillLuke.nextjs.addTypesOnSave": true,
+	"WillLuke.nextjs.hasPrompted": true
 }

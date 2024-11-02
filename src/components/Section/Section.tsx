@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { collect } from 'collect.js';
 import { remove } from 'remove-accents';
 
-import { Accordion, AccordionSummary, Box, CircularProgress, Typography } from '@mui/material';
+import { Accordion, AccordionSummary, CircularProgress, Typography } from '@mui/material';
 
 import { useGetAllCategories, useGetProgramOdborky } from '@/features/queries';
 

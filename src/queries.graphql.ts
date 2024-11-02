@@ -2,6 +2,11 @@ import gql from 'graphql-tag';
 
 import { VekKatEnum } from '@/models/enums/vek-kat.enum';
 
+import { getClient } from './lib/apollo-client';
+
+import type { AllCategories } from './models';
+import type { ApolloQueryResult } from '@apollo/client';
+
 const { SKAUTI, ROVERI } = VekKatEnum;
 
 export const GetProgramOdborkyQuery = (vekKatId: number) => {
@@ -82,6 +87,13 @@ export const GetAllCategoriesQuery = gql`
 		}
 	}
 `;
+
+export async function getAllCategoriesQuery() {
+	const { data }: ApolloQueryResult<AllCategories> = await getClient().query({
+		query: GetExpertskeOdborkyQuery,
+	});
+	return data;
+}
 
 export const AddNewOdborkaMutation = gql`
 	mutation AddNewOdborka(

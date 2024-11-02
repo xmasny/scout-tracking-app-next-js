@@ -1,29 +1,14 @@
-'use client';
-
 import './globals.css';
 
 import { Inter } from 'next/font/google';
 
-import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import NavBar from '@/components/NavBar/NavBar';
+import { ApolloWrapper } from '@/lib/apollo-wrapper';
 
 const inter = Inter({ subsets: ['latin'] });
-
-const url = process.env.NEXT_PUBLIC_VERCEL_URL
-
-console.log('layout', url);
-
-const client = new ApolloClient({
-	ssrMode: typeof window === 'undefined',
-	link: new HttpLink({ uri: `${url}/api/graphql`, credentials: 'same-origin' }),
-	cache: new InMemoryCache(),
-	devtools: {
-		enabled: true,
-	}
-});
 
 // Create a client
 const queryClient = new QueryClient({
@@ -47,7 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 			<body className={inter.className}>
 				<NavBar />
 				<QueryClientProvider client={queryClient}>
-					<ApolloProvider client={client}>{children} </ApolloProvider>
+					<ApolloWrapper>{children} </ApolloWrapper>
 					<ReactQueryDevtools buttonPosition="bottom-left" styleNonce="" />
 				</QueryClientProvider>
 			</body>

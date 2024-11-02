@@ -1,4 +1,4 @@
-import prisma from '@/prisma/prisma';
+import prisma from '@/lib/prisma/prisma';
 
 export const vekovaKat = async () => {
 	const vekoveKat = await prisma.vekovaKat.findMany({
