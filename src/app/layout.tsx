@@ -1,5 +1,3 @@
-import './globals.css';
-
 import { Inter } from 'next/font/google';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -22,7 +20,11 @@ const queryClient = new QueryClient({
 	}
 });
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+interface Props {
+	readonly children: React.ReactNode;
+}
+
+export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="sk">
 			<head>

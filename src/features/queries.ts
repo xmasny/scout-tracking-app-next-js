@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { AllCategories, Program, VekKat } from '@/models';
 
-import { GetAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphql';
+import { getAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphql';
 
 const url = process.env.NEXT_PUBLIC_VERCEL_URL
 
@@ -19,7 +19,7 @@ interface Data {
 export const useGetAllCategories = () => {
 	return useQuery<AllCategories>({
 		queryKey: ['allCategories'],
-		queryFn: async () => request(apiRoute, GetAllCategoriesQuery),
+		queryFn: getAllCategoriesQuery,
 	});
 };
 
