@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 
 import { Box, CardContent, CardMedia } from '@mui/material';

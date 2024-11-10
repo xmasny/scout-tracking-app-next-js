@@ -14,14 +14,8 @@ import { VekKat, VekKatEnum } from '@/models';
 import Section from '../../components/Section/Section';
 import VytvorNovuOdborkuDialog from '../../components/VytvorNovuOdborkuDialog/VytvorNovuOdborkuDialog';
 import {
-	BoxSpinner,
-	FloatingButton,
-	FloatingButtonLast,
-	OdborkyBox,
-	OdborkyContainer,
-	OdborkyFab,
-	OdborkyPaper,
-	OdborkySearch,
+	BoxSpinner, FloatingButton, FloatingButtonLast, OdborkyBox, OdborkyContainer, OdborkyFab, OdborkyPaper,
+	OdborkySearch
 } from './odborky.styles';
 
 const { VLCATA, SKAUTI, ROVERI } = VekKatEnum;

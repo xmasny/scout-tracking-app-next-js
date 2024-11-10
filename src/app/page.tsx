@@ -1,9 +1,10 @@
-import Odborky from '@/components/Odborky/Odborky';
-
-export default function Home(): JSX.Element {
+interface Props {
+	readonly children: React.ReactNode;
+}
+export default function Home({children}: Props): JSX.Element {
 	return (
 		<main>
-			<Odborky />
+			{children}
 		</main>
 	);
 }

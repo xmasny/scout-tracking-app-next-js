@@ -5,7 +5,7 @@ import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
 import { loadSchemaSync } from '@graphql-tools/load';
 
-import { expertskeOdborky, program, programKat, stupen, vekovaKat } from './query';
+import { expertskeOdborky, program, programKat, stupen, vekovaKat } from '../../../lib/prisma/query';
 
 const typeDefs = loadSchemaSync('.', {
 	loaders: [new GraphQLFileLoader()],

@@ -1,15 +1,10 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
-
 import { collect } from 'collect.js';
-import { remove } from 'remove-accents';
 
 import { Accordion, AccordionSummary, CircularProgress, Typography } from '@mui/material';
 
 import { useGetAllCategories, useGetProgramOdborky } from '@/features/queries';
 
-import { ExpertskeOdborky, Program } from '../../models/entities';
+import { ExpertskeOdborky } from '../../models/entities';
 import { ProgKatEnum } from '../../models/enums/prog-kat.enum';
 import { VekKatEnum } from '../../models/enums/vek-kat.enum';
 import ActivityCard from './ActivityCard/ActivityCard';
@@ -22,7 +17,7 @@ const { ODBORKY } = ProgKatEnum;
 interface Props {
 	name: string;
 	id: number;
-	searchField: string;
+	searchField?: string;
 }
 
 const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField }) => {
@@ -32,17 +27,6 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 		name: vekKatName,
 	});
 
-	const [filteredProgram, setFilteredProgram] = useState<Program[]>();
-
-	useEffect(() => {
-		if (programData) {
-			const filter = programData.program.filter((value: Program) => {
-				return remove(value.program_name.toLowerCase()).includes(searchField);
-			});
-
-			setFilteredProgram(filter);
-		}
-	}, [programData, searchField]);
 
 	if (categoriesLoading || programLoading) {
 		return (
@@ -52,7 +36,7 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 		);
 	}
 
-	const collection = collect(filteredProgram);
+	const collection = collect(programData);
 	const program = collection.groupBy('program_name').toArray();
 
 	const subsections = () =>
@@ -61,7 +45,13 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 				(odborka: any) => odborka.items[0].expertske_odborky.id === subsection.id
 			);
 
-			return <Subsection key={subsection.id} id={subsection.id} name={subsection.name} program={expFiltered} />;
+			const programMapped = expFiltered.map((aktivita: any) => {
+				return <ActivityCard key={aktivita.items[0].id} program={aktivita.items} />;
+			});
+
+			return <Subsection key={subsection.id} id={subsection.id} name={subsection.name}>
+				{programMapped}
+			</Subsection>
 		});
 
 	const programMapped = program.map((aktivita: any) => {
