@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode } from 'react';
 import ScrollToTop from 'react-scroll-up';
 

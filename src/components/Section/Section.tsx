@@ -1,10 +1,10 @@
-import { collect } from 'collect.js';
+import _ from 'lodash';
 
 import { Accordion, AccordionSummary, CircularProgress, Typography } from '@mui/material';
 
 import { useGetAllCategories, useGetProgramOdborky } from '@/features/queries';
 
-import { ExpertskeOdborky } from '../../models/entities';
+import { ExpertskeOdborky, Program } from '../../models/entities';
 import { ProgKatEnum } from '../../models/enums/prog-kat.enum';
 import { VekKatEnum } from '../../models/enums/vek-kat.enum';
 import ActivityCard from './ActivityCard/ActivityCard';
@@ -22,11 +22,7 @@ interface Props {
 
 const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField }) => {
 	const { data: categoriesData, isLoading: categoriesLoading } = useGetAllCategories();
-	const { data: programData, isLoading: programLoading } = useGetProgramOdborky(ODBORKY, {
-		id: vekKatId,
-		name: vekKatName,
-	});
-
+	const { data: programData, isLoading: programLoading } = useGetProgramOdborky(ODBORKY, vekKatId);
 
 	if (categoriesLoading || programLoading) {
 		return (
@@ -36,26 +32,25 @@ const Section: React.FC<Props> = ({ name: vekKatName, id: vekKatId, searchField 
 		);
 	}
 
-	const collection = collect(programData);
-	const program = collection.groupBy('program_name').toArray();
+	const program = _.toArray(_.groupBy(programData?.program, 'program_name'));
 
 	const subsections = () =>
 		categoriesData?.expertskeOdborky.map((subsection: ExpertskeOdborky) => {
-			const expFiltered = program.filter(
-				(odborka: any) => odborka.items[0].expertske_odborky.id === subsection.id
-			);
+			const expFiltered = program.filter((odborka) => odborka[0].expertske_odborky?.id === subsection.id);
 
-			const programMapped = expFiltered.map((aktivita: any) => {
-				return <ActivityCard key={aktivita.items[0].id} program={aktivita.items} />;
+			const programMapped = expFiltered.map((aktivita: Program[]) => {
+				return <ActivityCard key={aktivita[0].program_id} program={aktivita} />;
 			});
 
-			return <Subsection key={subsection.id} id={subsection.id} name={subsection.name}>
-				{programMapped}
-			</Subsection>
+			return (
+				<Subsection key={subsection.id} id={subsection.id} name={subsection.name}>
+					{programMapped}
+				</Subsection>
+			);
 		});
 
-	const programMapped = program.map((aktivita: any) => {
-		return <ActivityCard key={aktivita.items[0].id} program={aktivita.items} />;
+	const programMapped = program.map((aktivita: Program[]) => {
+		return <ActivityCard key={aktivita[0].program_id} program={aktivita} />;
 	});
 
 	return (

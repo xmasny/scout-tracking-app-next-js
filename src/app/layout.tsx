@@ -1,3 +1,6 @@
+'use client';
+
+import axios from 'axios';
 import { Inter } from 'next/font/google';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -5,7 +8,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import NavBar from '@/components/NavBar/NavBar';
-import { ApolloWrapper } from '@/lib/apollo-wrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +28,8 @@ interface Props {
 	readonly children: React.ReactNode;
 }
 
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_VERCEL_URL + 'api/';
+
 export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="sk">
@@ -37,7 +41,7 @@ export default function RootLayout({ children }: Props) {
 				<ThemeProvider theme={theme}>
 					<NavBar />
 					<QueryClientProvider client={queryClient}>
-						<ApolloWrapper>{children} </ApolloWrapper>
+						{children}
 						<ReactQueryDevtools buttonPosition="bottom-left" styleNonce="" />
 					</QueryClientProvider>
 				</ThemeProvider>

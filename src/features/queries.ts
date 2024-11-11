@@ -1,16 +1,10 @@
-import { request } from 'graphql-request';
+import axios from 'axios';
+import _ from 'lodash';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { AllCategories, Program, VekKat } from '@/models';
-
-import { getAllCategoriesQuery, GetProgramOdborkyQuery } from '../queries.graphql';
-
-const url = process.env.NEXT_PUBLIC_VERCEL_URL
-
-const apiRoute = `${url}/api/graphql`;
-
-console.log('queries', apiRoute);
+import { toRoute } from '@/lib/utils';
+import { AllCategories, Program } from '@/models';
 
 interface Data {
 	program: Program[];
@@ -19,14 +13,28 @@ interface Data {
 export const useGetAllCategories = () => {
 	return useQuery<AllCategories>({
 		queryKey: ['allCategories'],
-		queryFn: getAllCategoriesQuery,
+		queryFn: async () =>
+			await axios
+				.get('all-categories')
+				.then((res) => res.data)
+				.catch((err) => console.error(err)),
 	});
 };
 
-export const useGetProgramOdborky = (programKatId: number, vekovaKat: VekKat) => {
+export const useGetProgramOdborky = (programKatId: number, vekovaKatId: number) => {
+	const queryClient = useQueryClient();
+	const { programKat, vekovaKat } = queryClient.getQueryData<AllCategories>(['allCategories'])!;
+
+	const programKatName = toRoute(_.find(programKat, { id: programKatId })!.name);
+	const vekovaKatName = toRoute(_.find(vekovaKat, { id: vekovaKatId })!.name);
+
 	return useQuery<Data>({
-		queryKey: ['odborky', vekovaKat.name],
+		queryKey: [programKatName, programKatId, vekovaKatName, vekovaKatId],
 		queryFn: async () =>
-			request(apiRoute, GetProgramOdborkyQuery(vekovaKat.id), { programKatId, vekovaKatId: vekovaKat.id }),
+			await axios
+				.get(`program/${programKatId}/${vekovaKatId}`)
+				.then((res) => res.data)
+				.catch((err) => console.error(err)),
+		enabled: !!programKat && !!vekovaKat,
 	});
 };

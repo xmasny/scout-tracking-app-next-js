@@ -44,4 +44,5 @@ export interface AllCategories {
 	stupen: Stupen[];
 	vekovaKat: VekKat[];
 	expertskeOdborky: ExpertskeOdborky[];
+	programKat: ProgramKat[];
 }

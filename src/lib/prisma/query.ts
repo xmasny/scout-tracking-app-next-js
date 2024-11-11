@@ -55,7 +55,10 @@ export const stupen = async () => {
 	}));
 };
 
-export const program = async (_: any, { program_kat_id, vekova_kat_id }: any) => {
+export const program = async (
+	_: any,
+	{ program_kat_id, vekova_kat_id }: { program_kat_id: number; vekova_kat_id: number }
+) => {
 	const programs = await prisma.program.findMany({
 		where: {
 			vekova_kat_id,
@@ -74,26 +77,24 @@ export const program = async (_: any, { program_kat_id, vekova_kat_id }: any) =>
 		},
 	});
 
-	return programs.map(
-		(program: any) => ({
-			...program,
-			program_kat: {
-				id: program.program_kat.program_kat_id,
-				name: program.program_kat.program_kat_name,
-			},
-			vekova_kat: {
-				id: program.vekova_kat.vekova_kat_id,
-				name: program.vekova_kat.vekova_kat_name,
-			},
-			stupen: {
-				id: program.stupen?.stupen_id,
-				name: program.stupen?.stupen_name,
-			},
-			expertske_odborky: {
-				id: program.expertske_odborky?.expertske_odborky_id,
-				name: program.expertske_odborky?.expertske_odborky_name,
-				foto: program.expertske_odborky?.expertske_odborky_foto,
-			},
-		})
-	);
+	return programs.map((program: any) => ({
+		...program,
+		program_kat: {
+			id: program.program_kat.program_kat_id,
+			name: program.program_kat.program_kat_name,
+		},
+		vekova_kat: {
+			id: program.vekova_kat.vekova_kat_id,
+			name: program.vekova_kat.vekova_kat_name,
+		},
+		stupen: {
+			id: program.stupen?.stupen_id,
+			name: program.stupen?.stupen_name,
+		},
+		expertske_odborky: {
+			id: program.expertske_odborky?.expertske_odborky_id,
+			name: program.expertske_odborky?.expertske_odborky_name,
+			foto: program.expertske_odborky?.expertske_odborky_foto,
+		},
+	}));
 };
